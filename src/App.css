@@ -1,0 +1,50 @@
+:root {
+    --main-text-dark-color: #495E57;
+    --main-background-dark-color: #495E57;
+    --main-button-color: #F4CE14;
+    --main-text-light-color: white;
+    --main-border-radius: 15px;
+}
+
+body {
+    font-family: 'Markazi Text', sans-serif;
+    font-size: 20px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    display: block;
+    width: 100%;
+    text-align: right;
+}
+
+.nav-item {
+    margin: 10px;
+    text-decoration: none;
+    color: var(--main-text-dark-color);
+}
+
+.homePage {
+    color: var(--main-text-light-color);
+    background-color: var(--main-text-dark-color);
+    padding: 5px;
+}
+
+.homePageDescription {
+    width: 40%;
+}
+
+.reserveTableButton {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--main-text-dark-color);
+    background-color: var(--main-button-color);
+    border-radius: var(--main-border-radius);
+    padding: 10px;
+    margin: 10px;
+    width: fit-content;
+}
