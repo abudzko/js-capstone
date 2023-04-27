@@ -1,14 +1,20 @@
 :root {
     --main-text-dark-color: #495E57;
     --main-background-dark-color: #495E57;
+    --main-background-light-color: white;
     --main-button-color: #F4CE14;
     --main-text-light-color: white;
     --main-border-radius: 15px;
 }
 
 body {
+    display: flex;
+    flex-direction: row;
     font-family: 'Markazi Text', sans-serif;
     font-size: 20px;
+    height: 100vh;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 header {
@@ -22,6 +28,17 @@ nav {
     text-align: right;
 }
 
+.shortSiteInfo {
+    color: var(--main-text-light-color);
+    background-color: var(--main-text-dark-color);
+    padding: 10px;
+
+}
+
+.shortSiteInfo h1 {
+    font-size: 40px;
+}
+
 .nav-item {
     margin: 10px;
     text-decoration: none;
@@ -29,22 +46,134 @@ nav {
 }
 
 .homePage {
-    color: var(--main-text-light-color);
-    background-color: var(--main-text-dark-color);
-    padding: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 .homePageDescription {
-    width: 40%;
+    display: grid;
+    grid-template-columns: 5fr 2fr 1fr;
+    color: var(--main-text-light-color);
+    background-color: var(--main-text-dark-color);
+    padding: 10px;
 }
 
-.reserveTableButton {
+.reserveTablePage1Form,
+.reserveTablePage2Form,
+.reserveTablePage3Form {
+    border: var(--main-text-dark-color) solid;
+    padding: 10px;
+    border-radius: var(--main-border-radius);
+    color: gray;
+}
+
+.reserveTablePage1Form div,
+.reserveTablePage2Form div,
+.reserveTablePage3Form div {
+    padding: 10px;
+}
+
+.reserveTablePage1Form input[id],
+.reserveTablePage2Form input[id] {
+    font-size: 24px;
+}
+
+.mainButton {
+    display: inline-block;
     text-decoration: none;
     font-weight: bold;
+    font-size: 40px;
     color: var(--main-text-dark-color);
     background-color: var(--main-button-color);
     border-radius: var(--main-border-radius);
     padding: 10px;
-    margin: 10px;
-    width: fit-content;
+}
+
+.homePageDescriptionImage {
+    margin-top: 5%;
+}
+
+.homePageDescriptionImage img {
+    border-radius: var(--main-border-radius);
+    width: 100%;
+}
+
+.specialsDishes {
+    display: flex;
+    flex-direction: row;
+}
+
+.homePageRatings {
+    display: flex;
+    flex-direction: row;
+}
+
+.dishCard {
+    background-color: var(--main-background-dark-color);
+    border-radius: var(--main-border-radius);
+    width: 15%;
+    margin: 20px;
+    padding: 10px;
+    color: var(--main-text-light-color);
+}
+
+.ratingCard {
+    background-color: var(--main-background-light-color);
+    border-radius: var(--main-border-radius);
+    width: 10%;
+    margin: 20px;
+    padding: 10px;
+    color: var(--main-text-dark-color);
+}
+
+.dishCard img {
+    border-radius: var(--main-border-radius);
+    width: 100%;
+}
+
+.ratingCard img {
+    border-radius: var(--main-border-radius);
+    width: 100%;
+}
+
+.counter {
+    grid-template-columns: 1fr 2fr 1fr;
+    display: grid;
+    width: 30%;
+    font-size: 40px;
+}
+
+.counterControl {
+    color: var(--main-text-light-color);
+    background-color: var(--main-background-dark-color);
+    font-size: 40px;
+    text-align: center;
+}
+
+.leftCounterControl {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.rightCounterControl {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.counterText {
+    color: var(--main-text-light-color);
+    text-align: center;
+    background-color: var(--main-background-dark-color);
+    border-right: var(--main-text-light-color) solid;
+    border-left: var(--main-text-light-color) solid;
+}
+
+.stars {
+    display: flex;
+    flex-direction: row;
+    width: 20px;
+}
+
+.footerDescription {
+    height: 1000px;
 }

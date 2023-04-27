@@ -5,7 +5,9 @@ import logo from "assets/logo.svg"
 export default function Header(props) {
     return (
         <header>
-            <Link to="/" className="nav-item"> <img src={logo} alt="Logo" /></Link>
+            <Link to="/" className="nav-item">
+                <img src={logo} alt="Logo" />
+            </Link>
             <Navigation />
         </header>
     );
