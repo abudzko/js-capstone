@@ -3,16 +3,13 @@ import { BACK_TO_HOME_TEXT } from "const";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Counter from "./Counter";
+import DateTimePicker from "./DateTimePicker";
 
 export default function ReserveTablePage(props) {
     const location = useLocation();
     const state = location.state;
+    const [reservationDateTime, setReservationDateTime] = useState(state ? state.reservationDateTime : new Date());
     const [guestNumber, setGuestNumber] = useState(state ? state.guestNumber : 1);
-    const [reservationDateTime, setReservationDateTime] = useState(
-        state
-            ? state.reservationDateTime :
-            new Date().toISOString().substring(0, 16)
-    );
     let updatedState = { ...state, guestNumber, reservationDateTime };
 
     return (
@@ -24,24 +21,26 @@ export default function ReserveTablePage(props) {
                     <h1>Reserve a table.</h1>
                     <div className="reserveTablePage1Form">
                         <form>
+                        <h2>Date and Time</h2>
                             <div>
-                                <label htmlFor="datetime">Date and Time</label>
-                                <br />
-                                <input
-                                    type="datetime-local" id="datetime" name="datetime"
-                                    defaultValue={reservationDateTime}
-                                    onChange={(e) => setReservationDateTime(e.target.value)} />
+                                <DateTimePicker
+                                    date={reservationDateTime}
+                                    updateDate={(value) => { setReservationDateTime(value); }} />
                             </div>
+                            <h2>Guest Number</h2>
                             <div>
                                 <label htmlFor="guestNumber">Guest Number</label>
                                 <br />
-                                <Counter count={guestNumber} add={(v) => {
-                                    if (v < 0 && guestNumber === 0) {
-                                        return;
-                                    }
-                                    setGuestNumber(guestNumber + v);
-
-                                }} />
+                                <Counter
+                                    count={guestNumber}
+                                    add={(v) => {
+                                        if (v < 0 && guestNumber === 0) {
+                                            return;
+                                        }
+                                        setGuestNumber(guestNumber + v);
+                                    }}
+                                    reset={() => setGuestNumber(1)}
+                                />
                             </div>
                         </form>
                     </div>
