@@ -20,24 +20,24 @@ export default function DateTimePicker(props) {
             <h2>{formatDate(date)}</h2>
             <span>Days</span>
             <div className="dateTimePicker">
-                <input type="button" value={"-"} className="dateTimePickerControl leftControl" onClick={() => changeDate("day", -1)} />
+                <input type="button" value={"-"} aria-label="On Click" className="dateTimePickerControl leftControl" onClick={() => changeDate("day", -1)} />
                 <p className="dateTimePickerText">{date.getDate()}</p>
-                <input type="button" value={"+"} className="dateTimePickerControl rightControl" onClick={() => changeDate("day", 1)} />
+                <input type="button" value={"+"} aria-label="On Click" className="dateTimePickerControl rightControl" onClick={() => changeDate("day", 1)} />
             </div>
             <span>Hours</span>
             <div className="dateTimePicker">
-                <input type="button" value={"-"} className="dateTimePickerControl leftControl" onClick={() => changeDate("hour", -1)} />
+                <input type="button" value={"-"} aria-label="On Click" className="dateTimePickerControl leftControl" onClick={() => changeDate("hour", -1)} />
                 <p className="dateTimePickerText">{date.getHours()}</p>
-                <input type="button" value={"+"} className="dateTimePickerControl rightControl" onClick={() => changeDate("hour", 1)} />
+                <input type="button" value={"+"} aria-label="On Click" className="dateTimePickerControl rightControl" onClick={() => changeDate("hour", 1)} />
             </div>
             <span>Minutes</span>
             <div className="dateTimePicker">
-                <input type="button" value={"-"} className="dateTimePickerControl leftControl" onClick={() => changeDate("minute", -1)} />
+                <input type="button" value={"-"} aria-label="On Click" className="dateTimePickerControl leftControl" onClick={() => changeDate("minute", -1)} />
                 <p className="dateTimePickerText">{date.getMinutes()}</p>
-                <input type="button" value={"+"} className="dateTimePickerControl rightControl" onClick={() => changeDate("minute", 1)} />
+                <input type="button" value={"+"} aria-label="On Click" className="dateTimePickerControl rightControl" onClick={() => changeDate("minute", 1)} />
             </div>
             <div>
-                <input type="button" value={"reset"} className="dateTimePickerReset" onClick={() => props.updateDate(new Date())} />
+                <input type="button" value={"reset"} aria-label="On Click" className="dateTimePickerReset" onClick={() => props.updateDate(new Date())} />
             </div>
         </>
     );

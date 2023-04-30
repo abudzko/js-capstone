@@ -1,15 +1,42 @@
 import ShortSiteInfo from "components/ShortSiteInfo";
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from 'yup';
+import { useLocation, useNavigate } from "react-router-dom";
+import { Button, FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react";
 
 export default function ReserveTablePage2(props) {
     const location = useLocation();
     const state = location.state;
-    const [firstName, setFirstName] = useState(state ? state.firstName : "");
-    const [lastName, setLastName] = useState(state ? state.lastName : "");
-    const [tel, setTel] = useState(state ? state.tel : "");
-    const [email, setEmail] = useState(state ? state.email : "");
-    let updatedState = { ...state, firstName, lastName, tel, email };
+    const firstName = state && state.firstName ? state.firstName : "";
+    const lastName = state && state.lastName ? state.lastName : "";
+    const tel = state && state.tel ? state.tel : "";
+    const email = state && state.email ? state.email : "";
+
+    const navigate = useNavigate();
+    const formik = useFormik({
+        initialValues: {
+            firstName: firstName,
+            lastName: lastName,
+            tel: tel,
+            email: email,
+        },
+        onSubmit: (values) => {
+            navigate('/reservation3', { state: { ...state, ...values } });
+        },
+        validationSchema: Yup.object(
+            {
+                firstName: Yup.string().required("Required"),
+                lastName: Yup.string().optional("Required"),
+                tel: Yup.string().required("Required").matches(/^[+]{1}[0-9]{11,14}$/, "Please check you phone number. See example: +12345678912"),
+                email: Yup.string().required("Required").email("Please check you email. See example: mail@mail.com"),
+            }
+        ),
+    });
+
+    const handleBack = event => {
+        event.preventDefault();
+        navigate('/reservation', { state: { ...state, ...formik.values } });
+    };
 
     return (
         <>
@@ -19,40 +46,41 @@ export default function ReserveTablePage2(props) {
                     <h1>Step 2/3</h1>
                     <h1>Reserve a table.</h1>
                     <div className="reserveTablePage2Form">
-                        <form>
-                            <div>
-                                <label htmlFor="firstName">First Name</label>
-                                <br />
-                                <input type="text" id="firstName" name="firstName" placeholder="Your First Name"
-                                    defaultValue={firstName}
-                                    onChange={(e) => setFirstName(e.target.value)} />
-                            </div>
-                            <div>
-                                <label htmlFor="lastName">Last Name</label>
-                                <br />
-                                <input type="text" id="lastName" name="lastName" placeholder="Your Last Name"
-                                    defaultValue={lastName}
-                                    onChange={(e) => setLastName(e.target.value)} />
-                            </div>
-                            <div>
-                                <label htmlFor="tel">Phone Number</label>
-                                <br />
-                                <input type="tel" id="tel" name="tel" placeholder="+123456789876" pattern="[+]{1}[0-9]{11,14}"
-                                    defaultValue={tel}
-                                    onChange={(e) => setTel(e.target.value)} />
-                            </div>
-                            <div>
-                                <label htmlFor="email">Email</label>
-                                <br />
-                                <input type="email" id="email" name="email" placeholder="You email"
-                                    defaultValue={email}
-                                    onChange={(e) => setEmail(e.target.value)} />
-                            </div>
+                        <form onSubmit={formik.handleSubmit}>
+                            <FormControl isInvalid={formik.errors.firstName && formik.touched.firstName}>
+                                <FormLabel htmlFor="firstName">First Name*</FormLabel>
+                                <Input id="firstName" name="firstName" placeholder="Your First Name"
+                                    {...formik.getFieldProps('firstName')}
+                                />
+                                <FormErrorMessage >{formik.errors.firstName}</FormErrorMessage>
+                            </FormControl>
+                            <FormControl isInvalid={formik.errors.lastName && formik.touched.lastName}>
+                                <FormLabel htmlFor="lastName">Last Name</FormLabel>
+                                <Input id="lastName" name="lastName"
+                                    placeholder="Your Last Name"
+                                    {...formik.getFieldProps('lastName')}
+                                />
+                                <FormErrorMessage>{formik.errors.lastName}</FormErrorMessage>
+                            </FormControl>
+                            <FormControl isInvalid={formik.errors.tel && formik.touched.tel}>
+                                <FormLabel htmlFor="tel">Phone Number*</FormLabel>
+                                <Input id="tel" name="tel"
+                                    placeholder="+12345678912"
+                                    {...formik.getFieldProps('tel')}
+                                />
+                                <FormErrorMessage>{formik.errors.tel}</FormErrorMessage>
+                            </FormControl>
+                            <FormControl isInvalid={formik.errors.email && formik.touched.email}>
+                                <FormLabel htmlFor="email">Email</FormLabel>
+                                <Input id="email" name="email"
+                                    placeholder="You email"
+                                    {...formik.getFieldProps('email')}
+                                />
+                                <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+                            </FormControl>
+                            <button className="mainButton" aria-label="On Click" onClick={handleBack}>Back</button>
+                            <button type="submit" aria-label="On Click" className="mainButton">Reserve</button>
                         </form>
-                    </div>
-                    <div>
-                        <Link to="/reservation" state={updatedState} className="nav-item mainButton">Back</Link>
-                        <Link to="/reservation3" state={updatedState} className="nav-item mainButton">Reserve</Link>
                     </div>
                 </div>
             </article>

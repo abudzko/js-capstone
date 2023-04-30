@@ -39,7 +39,7 @@ export default function HomePage(props) {
                         <div>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, voluptates! Reprehenderit ducimus quia cupiditate corporis repudiandae animi fugit quasi eveniet perferendis, molestias quas nisi nesciunt soluta labore placeat debitis non.</p>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, voluptates! Reprehenderit ducimus quia cupiditate corporis repudiandae animi fugit quasi eveniet perferendis, molestias quas nisi nesciunt soluta labore placeat debitis non.</p>
-                            <Link to="/reservation" className="mainButton">Reserve a table</Link>
+                            <Link to="/reservation" aria-label="On Click" className="mainButton">Reserve a table</Link>
                         </div>
                         <div className="homePageDescriptionImage">
                             <img src={homePageImage} alt={siteName} />
@@ -48,7 +48,7 @@ export default function HomePage(props) {
                     <div className="homePageSpecials">
                         <h1>This week specials</h1>
                         <div >
-                            <Link to="/menu" className="nav-item mainButton">Online Menu</Link>
+                            <Link to="/menu" aria-label="On Click" className="nav-item mainButton">Online Menu</Link>
                         </div>
                         <div className="specialsDishes">
                             {dishes}
